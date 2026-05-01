@@ -33,6 +33,7 @@ public class ResourceManager : MonoBehaviour
     public AudioClip tutorialPopupClip;
     public AudioClip danger;
     public AudioSource tablet;
+    public AudioSource oxygenAlarmSource;
 
     [Header("Starting Audio")]
     public AudioSource starterAudio;
@@ -250,18 +251,36 @@ public class ResourceManager : MonoBehaviour
         if (currentOxygen <= 0 && !deathTriggered)
         {
             deathTriggered = true;
+            if (oxygenAlarmSource != null) oxygenAlarmSource.Stop();
             SceneManager.LoadScene("Death");
         }
         
     }
 
+    // public void dangerOxygenLow()
+    // {
+    //     if (refilledOxygen && currentOxygen <= 200)
+    //     {
+    //         tablet.clip = danger;
+    //         tablet.Play();
+    //         refilledOxygen = false;
+    //     }
+    // }
     public void dangerOxygenLow()
     {
-        if (refilledOxygen && currentOxygen <= 200)
+        if (oxygenAlarmSource == null) return;
+
+        bool oxygenIsLow = currentOxygen <= 300f && currentOxygen > 0f;
+
+        if (oxygenIsLow && !oxygenAlarmSource.isPlaying)
         {
-            tablet.clip = danger;
-            tablet.Play();
-            refilledOxygen = false;
+            oxygenAlarmSource.clip = danger;
+            oxygenAlarmSource.loop = true;
+            oxygenAlarmSource.Play();
+        }
+        else if (!oxygenIsLow && oxygenAlarmSource.isPlaying)
+        {
+            oxygenAlarmSource.Stop();
         }
     }
 
