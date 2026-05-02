@@ -36,7 +36,7 @@ public class IntroManager : MonoBehaviour
         forward.y = 0;
         forward.Normalize();
 
-        screenQuad.position = playerHead.position + forward * screenDistance;
+        screenQuad.position = playerHead.position + (forward * screenDistance);
         screenQuad.rotation = Quaternion.LookRotation(forward);
         screenQuad.localScale = new Vector3(screenWidth, screenHeight, 1f);
     }
