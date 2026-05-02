@@ -19368,7 +19368,7 @@ MonoBehaviour:
   hapticsMaxIntensity: 1
   hapticsMaxRate: 10
   tutorialPopupClip: {fileID: 8300000, guid: 37eff3ed7013c4b6392f5f87ed93dc70, type: 3}
-  danger: {fileID: 8300000, guid: 0678aacc4c7754f31bf4a3401c9b567d, type: 3}
+  danger: {fileID: 8300000, guid: 7216494f3f81d482cb63d6babeb8d711, type: 3}
   tablet: {fileID: 849732084}
   starterAudio: {fileID: 712709075}
   startingSequence:
