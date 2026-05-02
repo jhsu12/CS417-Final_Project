@@ -348,17 +348,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
   m_PrefabInstance: {fileID: 289172958}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &289172965 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1178791450436251564, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
-  m_PrefabInstance: {fileID: 289172958}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 289172959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0cb9aa70a22847b5925ee5f067c10a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &289172967
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -623,20 +612,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &681067467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: LeftHand/SecondaryButton
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: e0ca4504471ca124088e1e2cfe6804ae, type: 3}
-  m_ActionId: 1414e4ef-05d7-40b1-b759-aa2c2c9cee56
 --- !u!1 &698233099
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,7 +734,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 712709074}
-  - component: {fileID: 712709073}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -767,73 +741,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &712709073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 712709072}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 069504d2f7b78444ead464345df82e63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ResourceManager
-  deployMineral: {fileID: 1548562739}
-  deployEnergy: {fileID: 1388707789}
-  deployOxygen: {fileID: 1848489085}
-  increaseMineral: {fileID: 681067467}
-  spawnDeath: {fileID: 2045555191}
-  player: {fileID: 289172965}
-  maxMinGen: 3
-  maxEngGen: 3
-  door1: {fileID: 0}
-  door2: {fileID: 0}
-  door3: {fileID: 0}
-  num_mineralgenerators: 0
-  num_energygenerators: 0
-  mineral_generatorParent:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  mineral_padParent:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  energy_generatorParent:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  energy_padParent:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  resourceText: {fileID: 0}
-  tutorialText: {fileID: 0}
-  tutorialDisplayTime: 5
-  currentMinerals: 0
-  currentEnergy: 0
-  currentOxygen: 600
-  actionCooldownDuration: 10
-  mineralCooldown: 5
-  energyCooldown: 5
-  oxygenCooldown: 0
-  mineralRate: 1
-  energyRate: 0
-  oxygenDepletionRate: 8
-  costMultiplier: 1.2
-  mineralGeneratorPrefab: {fileID: 968165214316191884, guid: bd30cfd9de03ee34c93f0cde38f32df1, type: 3}
-  mineralGeneratorCost: 10
-  mineralBoostRate: 1
-  hasUnlockedMineral: 0
-  energyGeneratorPrefab: {fileID: 7080806414619094694, guid: 5a84747fa7b715147bbb89c8b55e3bcc, type: 3}
-  energyGeneratorCost: 15
-  energyBoostRate: 1
-  hasUnlockedEnergy: 0
-  oxygenRefillCost: 25
-  oxygenRefillAmount: 200
-  maxOxygen: 700
-  hasUnlockedOxygen: 0
 --- !u!4 &712709074
 Transform:
   m_ObjectHideFlags: 0
@@ -1366,34 +1273,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &1388707789
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: RightHand/SecondaryButton
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: e0ca4504471ca124088e1e2cfe6804ae, type: 3}
-  m_ActionId: cba87b5e-c43b-4c38-b5dc-320d8fbb6136
---- !u!114 &1548562739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: RightHand/PrimaryButton
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: e0ca4504471ca124088e1e2cfe6804ae, type: 3}
-  m_ActionId: b87d0657-0e2f-41f9-92ee-6c7f0b0fa4f8
 --- !u!1 &1750186914
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,20 +1386,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750186914}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1848489085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: LeftHand/PrimaryButton
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: e0ca4504471ca124088e1e2cfe6804ae, type: 3}
-  m_ActionId: 204073bf-582e-48f4-a392-6eaf1e637387
 --- !u!1001 &1860718721
 PrefabInstance:
   m_ObjectHideFlags: 0

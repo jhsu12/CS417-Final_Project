@@ -33,7 +33,6 @@ public class ResourceManager : MonoBehaviour
     public AudioClip tutorialPopupClip;
     public AudioClip danger;
     public AudioSource tablet;
-    public AudioSource oxygenAlarmSource;
 
     [Header("Starting Audio")]
     public AudioSource starterAudio;
@@ -251,36 +250,28 @@ public class ResourceManager : MonoBehaviour
         if (currentOxygen <= 0 && !deathTriggered)
         {
             deathTriggered = true;
-            if (oxygenAlarmSource != null) oxygenAlarmSource.Stop();
+            if (tablet != null) tablet.Stop();
+            StopAllCoroutines();
             SceneManager.LoadScene("Death");
         }
         
     }
-
-    // public void dangerOxygenLow()
-    // {
-    //     if (refilledOxygen && currentOxygen <= 200)
-    //     {
-    //         tablet.clip = danger;
-    //         tablet.Play();
-    //         refilledOxygen = false;
-    //     }
-    // }
+    
     public void dangerOxygenLow()
     {
-        if (oxygenAlarmSource == null) return;
+        if (tablet == null || danger == null) return;
 
         bool oxygenIsLow = currentOxygen <= 300f && currentOxygen > 0f;
 
-        if (oxygenIsLow && !oxygenAlarmSource.isPlaying)
+        if (oxygenIsLow && !tablet.isPlaying)
         {
-            oxygenAlarmSource.clip = danger;
-            oxygenAlarmSource.loop = true;
-            oxygenAlarmSource.Play();
+            tablet.clip = danger;  // AudioSource plays AudioClip ✅
+            tablet.loop = true;
+            tablet.Play();
         }
-        else if (!oxygenIsLow && oxygenAlarmSource.isPlaying)
+        else if (!oxygenIsLow && tablet.isPlaying)
         {
-            oxygenAlarmSource.Stop();
+            tablet.Stop();
         }
     }
 
@@ -290,22 +281,6 @@ public class ResourceManager : MonoBehaviour
         yield return new WaitForSeconds(5.0f);
     }
 
-    // void ShowTutorial(string message)
-    // {
-    //     if (tutorialText != null)
-    //     {
-    //         tutorialText.text = message;
-
-    //         // If there's already a timer running from a previous message, stop it!
-    //         if (currentTutorialCoroutine != null)
-    //         {
-    //             StopCoroutine(currentTutorialCoroutine);
-    //         }
-
-    //         // Start a fresh 5-second countdown
-    //         currentTutorialCoroutine = StartCoroutine(ClearTutorialAfterDelay());
-    //     }
-    // }
     void ShowTutorial(string message)
     {
         if (tutorialText != null && tutorialPanel != null)
@@ -600,18 +575,6 @@ public class ResourceManager : MonoBehaviour
         child.GetComponent<AudioSource>().Play();
     }
 
-    // private IEnumerator ClearTutorialAfterDelay()
-    // {
-    //     // 1. Wait for the specified time
-    //     yield return new WaitForSeconds(tutorialDisplayTime);
-        
-    //     // 2. Erase the text
-    //     if (tutorialText != null)
-    //     {
-    //         tutorialText.text = ""; 
-    //     }
-    // }
-
     // cool down time juicy
     void TriggerCooldownStart(ref float cooldown, Image bar)
     {
@@ -661,11 +624,28 @@ public class ResourceManager : MonoBehaviour
             // If hasEverCooled and not wasCooling — do nothing, stays green ✅
         }
     }
-
     IEnumerator PlayAudioSequence(AudioSource source, AudioClip[] clips)
     {
+        if (source == null)
+        {
+            Debug.LogError("PlayAudioSequence: source AudioSource is null!");
+            yield break;
+        }
+        
+        if (clips == null || clips.Length == 0)
+        {
+            Debug.LogWarning("PlayAudioSequence: clips array is empty or null");
+            yield break;
+        }
+
         foreach (AudioClip clip in clips)
         {
+            if (clip == null)
+            {
+                Debug.LogWarning("PlayAudioSequence: Skipping null clip");
+                continue; // Skip null clips instead of crashing
+            }
+
             source.clip = clip;
             source.Play();
 
@@ -673,19 +653,20 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
+
     public IEnumerator EaseInGenerator(GameObject obj)
-{
-    obj.SetActive(true);
-    Vector3 targetScale = obj.transform.localScale;
-    obj.transform.localScale = Vector3.zero;
-
-    while (Vector3.Distance(obj.transform.localScale, targetScale) > 0.01f)
     {
-        // v = k * (goal - x) * dt
-        obj.transform.localScale += 6f * (targetScale - obj.transform.localScale) * Time.deltaTime;
-        yield return null;
-    }
+        obj.SetActive(true);
+        Vector3 targetScale = obj.transform.localScale;
+        obj.transform.localScale = Vector3.zero;
 
-    obj.transform.localScale = targetScale;
-}
+        while (Vector3.Distance(obj.transform.localScale, targetScale) > 0.01f)
+        {
+            // v = k * (goal - x) * dt
+            obj.transform.localScale += 6f * (targetScale - obj.transform.localScale) * Time.deltaTime;
+            yield return null;
+        }
+
+        obj.transform.localScale = targetScale;
+    }
 }
