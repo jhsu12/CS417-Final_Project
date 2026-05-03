@@ -4,10 +4,18 @@ using UnityEngine.Events;
 
 public class MatchingPuzzleManager : MonoBehaviour
 {
-    public static MatchingPuzzleManager Instance { get; private set; }
-
     [SerializeField] private List<MatchingSocket> sockets = new List<MatchingSocket>();
 
+    [Header("Completion Effects")]
+    [Tooltip("Particle system to play once when the puzzle is completed. Can be placed anywhere in the scene.")]
+    [SerializeField] private ParticleSystem completionParticles;
+
+    [Tooltip("Sound effect to play once when the puzzle is completed.")]
+    [SerializeField] private AudioClip completionSound;
+
+    [SerializeField] private AudioSource audioSource;
+
+    [Header("Events")]
     [Tooltip("Invoked once when all sockets are correctly filled.")]
     public UnityEvent OnPuzzleCompleted;
 
@@ -16,24 +24,24 @@ public class MatchingPuzzleManager : MonoBehaviour
 
     public bool IsPuzzleComplete { get; private set; } = false;
 
+    private bool hasPlayedCompletionEffects = false;
+
     private void Awake()
     {
-        // Simple singleton so sockets can find the manager easily
-        if (Instance != null && Instance != this)
+        // Auto-create an AudioSource if none was assigned
+        if (audioSource == null)
         {
-            Destroy(this);
-            return;
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+                audioSource.playOnAwake = false;
+            }
         }
-        Instance = this;
     }
 
-    // Optional: auto-find sockets in the scene if list is empty
     private void Start()
     {
-        if (sockets.Count == 0)
-        {
-            sockets.AddRange(FindObjectsByType<MatchingSocket>(FindObjectsSortMode.None));
-        }
     }
 
     public void CheckPuzzleState()
@@ -51,14 +59,25 @@ public class MatchingPuzzleManager : MonoBehaviour
         if (allCorrect && !IsPuzzleComplete)
         {
             IsPuzzleComplete = true;
-            Debug.Log("Puzzle completed!");
+            Debug.Log("Matching Puzzle completed!");
+            PlayCompletionEffects();
             OnPuzzleCompleted?.Invoke();
         }
-        else if (!allCorrect && IsPuzzleComplete)
+    }
+
+    private void PlayCompletionEffects()
+    {
+        if (hasPlayedCompletionEffects) return;
+        hasPlayedCompletionEffects = true;
+
+        if (completionParticles != null)
         {
-            IsPuzzleComplete = false;
-            Debug.Log("Puzzle no longer complete.");
-            OnPuzzleUncompleted?.Invoke();
+            completionParticles.Play();
+        }
+
+        if (completionSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(completionSound);
         }
     }
 }

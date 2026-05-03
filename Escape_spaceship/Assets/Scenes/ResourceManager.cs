@@ -139,7 +139,10 @@ public class ResourceManager : MonoBehaviour
 
     private bool refilledOxygen = false;
 
-    
+    // flag for room-level puzzle completion
+    public bool matchingPuzzleComplete = false;
+
+
 
     private void Start()
     {
@@ -402,6 +405,12 @@ public class ResourceManager : MonoBehaviour
                 Debug.Log($"Haptics sent to {device.name} — Channels: {channelCount}, Intensity: {intensity:F2}, Duration: {hapticsBaseDuration}");
             }
         }
+    }
+
+    public void MatchingPuzzleComplete()
+    {
+        matchingPuzzleComplete = true;
+        Debug.Log("matchingPuzzleComplete");
     }
     
     // --- DEPLOYMENT FUNCTIONS ---

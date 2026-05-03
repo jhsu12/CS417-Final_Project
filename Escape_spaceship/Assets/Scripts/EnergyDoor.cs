@@ -39,7 +39,7 @@ public class EnergyDoor : MonoBehaviour
     {
         if (doornum == 2)
         {
-            if (!doorOpened && resourceManager.currentEnergy >= requiredEnergy && door1.doorOpened)
+            if (!doorOpened && resourceManager.currentEnergy >= requiredEnergy && door1.doorOpened && resourceManager.matchingPuzzleComplete)
             {
                 doorOpened = true;
                 PlayDoorSound();
