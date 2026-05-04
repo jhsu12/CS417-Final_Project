@@ -12,7 +12,7 @@ public class restart : MonoBehaviour
         restartButton.action.Enable();
         restartButton.action.performed += (ctx) =>
         {
-            SceneManager.LoadScene("TestingXR");
+            SceneManager.LoadScene("Intro");
         };
 
     }
