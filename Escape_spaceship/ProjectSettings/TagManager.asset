@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Mineral
   - MineralPro
+  - Asteroid
+  - SpaceRock
+  - Crystal
   layers:
   - Default
   - TransparentFX
