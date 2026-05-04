@@ -25327,7 +25327,7 @@ MonoBehaviour:
   oxygenCooldown: 0
   mineralRate: 1
   energyRate: 0
-  oxygenDepletionRate: 0
+  oxygenDepletionRate: 9
   costMultiplier: 1.2
   mineralGeneratorPrefab: {fileID: 968165214316191884, guid: bd30cfd9de03ee34c93f0cde38f32df1, type: 3}
   mineralGeneratorCost: 10
@@ -41603,6 +41603,10 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_Name
       value: XR Device Simulator
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
