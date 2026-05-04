@@ -142,6 +142,9 @@ public class ResourceManager : MonoBehaviour
     // flag for room-level puzzle completion
     public bool matchingPuzzleComplete = false;
 
+     // flag for room3 puzzle completion
+    public bool room3PuzzleComplete = false;
+
 
 
     private void Start()
@@ -411,6 +414,12 @@ public class ResourceManager : MonoBehaviour
     {
         matchingPuzzleComplete = true;
         Debug.Log("matchingPuzzleComplete");
+    }
+
+    public void Room3PuzzleComplete()
+    {
+        room3PuzzleComplete = true;
+        Debug.Log("room3Complete");
     }
     
     // --- DEPLOYMENT FUNCTIONS ---

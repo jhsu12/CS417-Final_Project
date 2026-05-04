@@ -6,6 +6,8 @@ public class EnergyDoor2 : MonoBehaviour
 
     public float requiredEnergy = 50f;
 
+    public float endEnergy = 300f;
+
     public bool doorOpened = false;
 
     public Transform leftDoor;
@@ -51,7 +53,7 @@ public class EnergyDoor2 : MonoBehaviour
         }
         if (doornum == 3)
         {
-            if (!doorOpened && resourceManager.currentEnergy >= requiredEnergy && door2.doorOpened)
+            if (!doorOpened && resourceManager.currentEnergy >= endEnergy && door2.doorOpened && resourceManager.room3PuzzleComplete)
             {
                 doorOpened = true;
                 PlayDoorSound();
